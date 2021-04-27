@@ -1,5 +1,22 @@
 <?php require 'inc/data/products.php'; ?>
 <?php require 'inc/head.php'; ?>
+<?php 
+
+var_dump($_SESSION);
+
+if(isset($_GET['add_to_cart'])){
+
+
+    if (!isset($_SESSION['id'])) {
+        $cart = [];
+    } else {
+        $cart = $_SESSION['id'];
+    }
+    $cart[] = $_GET['add_to_cart'];
+    $_SESSION['id'] = $cart;
+}
+?> 
+
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>

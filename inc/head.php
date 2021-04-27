@@ -1,3 +1,11 @@
+
+<?php
+if (!isset($_SESSION)){
+session_start();
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +45,11 @@
                     <li><a href="#">Chocolates chips</a></li>
                     <li><a href="#">Nuts</a></li>
                     <li><a href="#">Gluten full</a></li>
+                    <?php if(isset($_SESSION['loginname'])) {?>
+                        <li><a href="deconnexion.php"> Deconnexion </a> </li>
+                        <?php }?>
+
+                    
                     <li>
                         <a href="/cart.php" class="btn btn-warning navbar-btn">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
@@ -48,6 +61,20 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+
+        <?php 
+        if(!isset($_SESSION['loginname'])){
+
+        ?>
+        <strong>Hello Wilder!</strong>
+
+        <?php 
+        } else {
+        ?>
+
+        <strong>Hello <?= $_SESSION['loginname'] ?></strong>
+
+
+        <?php } ?>
     </div>
 </header>
